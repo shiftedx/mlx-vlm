@@ -1,3 +1,4 @@
+import argparse
 import sys
 
 import mlx.core as mx
@@ -16,7 +17,9 @@ from mlx_vlm.utils import load_image
 
 # need install outlines with version 1.1.1, uv pip install outlines==1.1.1
 
-image_path = "examples/images/password.jpg"
+parser = argparse.ArgumentParser(description="Extract structured fields from a local image.")
+parser.add_argument("--image", required=True, help="Path to an image you may process; keep credentials out of commits.")
+image_path = parser.parse_args().image
 
 # Load model and processor
 model, processor = load("mlx-community/Qwen3-VL-2B-Thinking-8bit")
